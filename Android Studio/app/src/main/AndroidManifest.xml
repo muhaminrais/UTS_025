@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.a025_uts">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Dashboard"></activity>
+        <activity
+            android:name=".HalamanContent"
+            android:label="@string/namekomponen5" />
+        <activity
+            android:name=".HalamanBroadcast"
+            android:label="@string/namekomponen4" />
+        <activity
+            android:name=".HalamanService"
+            android:label="@string/namekomponen3" />
+        <activity
+            android:name=".HalamanIntent"
+            android:label="@string/namekomponen2" />
+        <activity
+            android:name=".HalamanActivity"
+            android:label="@string/namekomponen1" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

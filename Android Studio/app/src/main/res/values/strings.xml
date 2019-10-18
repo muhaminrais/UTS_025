@@ -1,0 +1,126 @@
+<resources>
+    <string name="app_name">025_UTS(Komponen Android)</string>
+    <string name="namekomponen1">Halaman Activity</string>
+    <string name="namekomponen2">Halaman Intent</string>
+    <string name="namekomponen3">Halaman Service</string>
+    <string name="namekomponen4">Halaman Broadcast Receiver</string>
+    <string name="namekomponen5">Halaman Content Provider</string>
+
+    <string name="content_text">
+        Activity adalah sebuah komponen aplikasi yang menyediakan layar yang digunakan pengguna untuk berinteraksi guna melakukan sesuatu, misalnya memilih nomor ponsel, mengambil foto, mengirim email, atau menampilkan peta. Tiap aktivitas diberi sebuah jendela untuk menggambar antarmuka penggunanya. Jendela ini biasanya mengisi layar, namun mungkin lebih kecil daripada layar dan mengambang di atas jendela lain.
+        \n\nSebuah aplikasi biasanya terdiri atas beberapa aktivitas yang terikat secara longgar satu sama lain. Biasanya, satu aktivitas dalam aplikasi ditetapkan sebagai aktivitas "utama", yang ditampilkan kepada pengguna saat membuka aplikasi untuk pertama kali. Tiap aktivitas kemudian bisa memulai aktivitas lain untuk melakukan berbagai tindakan. Tiap kali aktivitas baru dimulai, aktivitas sebelumnya akan dihentikan, namun sistem mempertahankan aktivitas dalam sebuah tumpukan ("back-stack"). Bila sebuah aktivitas baru dimulai, aktivitas itu akan didorong ke atas back-stack dan mengambil fokus pengguna. Back-stack mematuhi mekanisme dasar tumpukan "masuk terakhir, keluar pertama", jadi, bila pengguna selesai dengan aktivitas saat ini dan menekan tombol Kembali, aktivitas akan dikeluarkan dari tumpukan (dan dimusnahkan) dan aktivitas sebelumnya akan dilanjutkan. (Back-stack dibahas selengkapnya dalam dokumen Tugas dan Back-Stack.)
+        \n\nBila aktivitas dihentikan karena ada aktivitas baru yang dimulai, aktivitas lama akan diberi tahu tentang perubahan status ini melalui metode callback daur hidupnya. Ada beberapa metode callback yang mungkin diterima aktivitas, karena sebuah perubahan dalam statusnya—apakah sistem sedang membuatnya, menghentikannya, melanjutkannya, atau menghapuskannya—dan masing-masing callback memberi Anda kesempatan melakukan pekerjaan tertentu yang sesuai untuk perubahan status itu. Misalnya, bila dihentikan, aktivitas Anda harus melepas objek besar, seperti koneksi jaringan atau database. Bila aktivitas dilanjutkan, Anda bisa memperoleh kembali sumber daya yang diperlukan dan melanjutkan tindakan yang terputus. Transisi status ini semuanya bagian dari daur hidup aktivitas.
+        \n\nBagian selebihnya dari dokumen ini membahas dasar-dasar cara membangun dan menggunakan aktivitas, yang meliputi satu pembahasan lengkap tentang cara kerja daur hidup aktivitas, sehingga Anda bisa dengan benar mengelola transisi di antara berbagai status aktivitas.</string>
+    <string name="content_text1">
+        Intent adalah objek perpesanan yang bisa Anda gunakan untuk meminta tindakan dari komponen aplikasi. Meskipun intent mempermudah komunikasi antar komponen dengan beberapa cara, ada tiga kasus penggunaan yang mendasar:
+        \n\n- Memulai aktivitas
+        \n\nActivity merepresentasikan satu layar dalam aplikasi. Anda bisa memulai instance baru Activity dengan meneruskan Intent ke startActivity(). Intent menjelaskan aktivitas yang akan dimulai dan membawa data yang diperlukan.
+        \n\nJika Anda ingin menerima hasil dari aktivitas setelah selesai, panggil startActivityForResult(). Aktivitas Anda menerima hasil sebagai objek Intent terpisah dalam callback onActivityResult() aktivitas Anda. Untuk informasi selengkapnya, lihat panduan Aktivitas.
+        \n\n- Memulai layanan
+        \n\nService Adalah komponen yang melakukan operasi di latar belakang tanpa antarmuka pengguna. Dengan Android 5.0 (API level 21) dan yang lebih baru, Anda bisa memulai layanan dengan JobScheduler. Untuk informasi selengkapnya tentang JobScheduler, lihat API-reference documentation-nya.
+        \n\nUntuk versi sebelum Android 5.0 (API level 21), Anda bisa memulai layanan menggunakan metode class Service. Anda bisa memulai layanan untuk melakukan operasi satu-kali (misalnya mendownload file) dengan meneruskan Intent ke startService(). Intent menjelaskan layanan yang akan dimulai dan membawa data yang diperlukan.
+        \n\nJika layanan didesain dengan antarmuka pengguna klien-server, Anda bisa menautkan ke layanan dari komponen lain dengan meneruskan Intent ke bindService(). Untuk informasi selengkapnya, lihat panduan Layanan.
+        \n\n- Mengirimkan siaran
+        \n\nSiaran adalah pesan yang bisa diterima aplikasi apa saja. Sistem mengirimkan beragam siaran untuk peristiwa sistem, seperti saat sistem melakukan booting atau perangkat mulai mengisi daya. Anda bisa mengirimkan siaran ke aplikasi lain dengan meneruskan Intent ke sendBroadcast() atau sendOrderedBroadcast().
+    </string>
+    <string name="content_text1.1">
+        - Intent eksplisit menentukan aplikasi mana yang akan memenuhi persyaratan intent, dengan menyediakan nama paket aplikasi target maupun nama class komponen yang sepenuhnya memenuhi syarat. Anda biasanya akan menggunakan intent eksplisit untuk memulai sebuah komponen pada aplikasi Anda sendiri, karena Anda mengetahui nama class dari aktivitas atau layanan yang ingin dimulai. Misalnya, Anda mungkin memulai aktivitas baru pada aplikasi sebagai respons terhadap tindakan pengguna, atau mulai layanan untuk mendownload file di latar belakang.
+        \n\n- Intent implisit tidak menetapkan komponen tertentu, melainkan mendeklarasikan tindakan umum yang akan dilakukan, yang memungkinkan komponen aplikasi lain untuk menanganinya. Misalnya, jika ingin menampilkan sebuah lokasi pengguna di peta, Anda bisa menggunakan intent implisit untuk meminta aplikasi lain yang mampu menunjukkan lokasi yang telah ditetapkan di peta tersebut.
+    </string>
+    <string name="content_text2">
+        Service adalah sebuah komponen aplikasi yang bisa melakukan operasi yang berjalan lama di latar belakang dan tidak menyediakan antarmuka pengguna. Komponen aplikasi lain bisa memulai layanan dan komponen aplikasi tersebut akan terus berjalan di latar belakang walaupun pengguna beralih ke aplikasi lain. Selain itu, komponen bisa mengikat ke layanan untuk berinteraksi dengannya dan bahkan melakukan komunikasi antarproses (IPC). Misalnya, layanan mungkin menangani transaksi jaringan, memutar musik, melakukan file I/O, atau berinteraksi dengan penyedia materi dari latar belakang.
+        \nInilah tiga tipe layanan yang berbeda:
+        \n\nLatar depan
+        \n\nLayanan latar depan melakukan beberapa operasi yang terlihat oleh pengguna. Misalnya, aplikasi audio akan menggunakan layanan latar depan untuk memutar track audio. Layanan latar depan harus menampilkan Notifikasi. Layanan latar depan terus berjalan bahkan saat pengguna tidak berinteraksi dengan aplikasi.
+        \n\nLatar belakang
+        \n\nLayanan latar belakang melakukan operasi yang tidak terlihat secara langsung oleh pengguna. Misalnya, jika aplikasi menggunakan layanan untuk memadatkan penyimpanannya, aplikasi tersebut biasanya akan menjadi layanan latar belakang.
+        \n\nTerikat
+        \n\nSebuah layanan akan terikat bila komponen aplikasi mengikatkan kepadanya dengan memanggil bindService(). Layanan terikat menawarkan antarmuka klien-server yang memungkinkan komponen berinteraksi dengan layanan tersebut, mengirim permintaan, mendapatkan hasil dan bahkan melakukannya pada sejumlah proses dengan komunikasi antarproses (IPC). Layanan terikat hanya berjalan selama komponen aplikasi terikat padanya. Beberapa komponen bisa diikat ke layanan sekaligus, namun bila semuanya telah dilepas, layanan akan dimusnahkan.
+    </string>
+    <string name="content_text3">
+        Broadcast Receiver berfungsi menerima pesan intent dari aplikasi lain atau dari sistem. Sebagai contoh, suatu aplikasi mengirim pesan berisi perintah tertentu untuk aplikasi lain bahwa beberapa data telah diunduh ke perangkat dan tersedia bagi mereka untuk menggunakan apklikasi tersebut, jadi Broadcast Receiver inilah yang akan menangani komunikasi ini dan akan melakukan tindakan yang tepat.Sebuah Broadcast Receiver diimplementasikan sebagai subclass dari class BroadcastReceiver dan setiap pesan akan dikirim dan diterima sebagai objek Intent.
+        \n\nBerikut ini adalah cara kerja Broadcast Receiver ketika dijalankan, yaitu:
+
+        \n\n- Register Broadcast Receiver
+        \n- Broadcast Intent
+        \n- Android mengirimkan Intent ke penerima yang telah terdaftar dengan memanggil method onReceive()
+        \n- Event diterima oleh method onReceive()
+
+        \n\nAda beberapa langkah penting untuk membuat Broadcast Receiver, yaitu:
+
+        \n\n- Creating Broadcast Receiver
+        \n- Registering Broadcast Receiver
+    </string>
+    <string name="content_text4">
+        Penyedia konten dapat membantu aplikasi mengelola akses ke data yang disimpan dengan sendirinya, yang disimpan oleh aplikasi lain, dan memberikan cara untuk membagikan data ke aplikasi lain. Mereka membungkus data, dan menyediakan mekanisme untuk mendefinisikan keamanan data. Penyedia materi adalah antarmuka standar yang menghubungkan data dalam satu proses dengan kode yang berjalan dalam proses lain. Mengimplementasikan penyedia konten memiliki banyak keuntungan. Yang terpenting, Anda dapat mengonfigurasi penyedia konten agar memungkinkan aplikasi lain mengakses dan memodifikasi data aplikasi Anda secara aman.
+        \n\nGunakan penyedia konten jika berencana membagikan data. Jika tidak berencana membagikan data, Anda masih bisa menggunakannya karena penyedia konten tersebut menyediakan abstraksi yang bagus, tetapi Anda tidak harus melakukannya. Abstraksi ini memungkinkan Anda melakukan modifikasi pada implementasi penyimpanan data aplikasi tanpa mempengaruhi aplikasi yang sudah ada lainnya yang mengandalkan akses ke data Anda. Dalam skenario ini, hanya penyedia konten Anda yang terpengaruh dan bukan aplikasi yang mengaksesnya. Misalnya, Anda dapat menukar database SQLite untuk penyimpanan alternatif.
+        \n\nSejumlah kelas lain bergantung pada class ContentProvider:
+        \n\n- AbstractThreadedSyncAdapter
+        \n- CursorAdapter
+        \n- CursorLoader
+        \n\nJika Anda menggunakan salah satu dari kelas tersebut, Anda juga perlu mengimplementasikan penyedia konten dalam aplikasi Anda. Ingat bahwa saat menggunakan framework adaptor sinkronisasi, Anda juga dapat membuat penyedia konten rintisan sebagai alternatif. Untuk informasi selengkapnya tentang topik ini, lihat Membuat penyedia konten rintisan. Selain itu, Anda perlu penyedia konten Anda sendiri pada beberapa kasus berikut:
+        \n\n- Anda ingin mengimplementasikan saran penelusuran kustom dalam aplikasi Anda
+        \n- Anda perlu menggunakan penyedia konten untuk mengekspos data aplikasi Anda ke widget
+        \n- Anda ingin menyalin dan menempelkan data atau file yang kompleks dari aplikasi Anda ke aplikasi lain
+        \n\nFramework Android mencantumkan penyedia konten yang mengelola data seperti audio, video, gambar, dan informasi kontak pribadi. Anda bisa melihat sebagian informasi ini tercantum dalam dokumentasi referensi untuk paket android.provider . Dengan beberapa batasan, semua penyedia ini bisa diakses oleh aplikasi Android apa saja.
+        \n\nPenyedia konten dapat digunakan untuk mengelola akses ke beragam sumber penyimpanan data, termasuk data terstruktur, seperti database relasional SQLite, atau data tidak terstruktur seperti file gambar. Untuk informasi selengkapnya tentang tipe penyimpanan yang tersedia di Android, lihat Opsi penyimpanan, sama seperti Mendesain penyimpanan data.
+    </string>
+    <string name="content_text4.1">
+        Penyedia konten menawarkan kontrol granular atas izin untuk mengakses data. Anda dapat memilih untuk membatasi akses ke penyedia konten dari hanya dalam aplikasi, memberikan izin umum untuk mengakses data dari aplikasi lain, atau mengonfigurasi berbagai izin untuk membaca dan menulis data. Untuk informasi selengkapnya tentang menggunakan penyedia konten secara aman, lihat Tips keamanan untuk menyimpan data, dan juga Izin penyedia konten.
+        \n\nAnda dapat menggunakan penyedia konten untuk meringkas detail untuk mengakses berbagai sumber data di aplikasi Anda. Misalnya, aplikasi Anda dapat menyimpan catatan terstruktur dalam database SQLite, serta file video dan audio. Anda bisa menggunakan penyedia konten untuk mengakses semua data ini, jika Anda mengimplementasikan pola pengembangan ini pada aplikasi Anda.
+        \n\nJuga ingat bahwa objek CursorLoader bergantung pada penyedia konten untuk menjalankan kueri asinkron dan kemudian menampilkan hasil untuk layer UI aplikasi Anda. Untuk informasi selengkapnya tentang menggunakan CursorLoader untuk memuat data di latar belakang, lihat Menjalankan kueri dengan CursorLoader.
+    </string>
+    <string name="activity_display">
+        public class MainActivity extends AppCompatActivity {\n
+
+    \n@Override\n
+    \nprotected void onCreate(Bundle savedInstanceState) {\n
+        \nsuper.onCreate(savedInstanceState);\n
+        \nsetContentView(R.layout.activity_main);\n
+    \n}\n
+\n}
+    </string>
+    <string name="activity_display1">
+    Intent sendIntent = new Intent(Intent.ACTION_SEND);
+    \n...
+
+    \n\nString title = getResources().getString(R.string.chooser_title);
+    \n\nIntent chooser = Intent.createChooser(sendIntent, title);
+    \n\nif (sendIntent.resolveActivity(getPackageManager()) != null) {
+    \nstartActivity(chooser);
+    \n}
+    </string>
+    <string name="activity_display2">
+    public class HelloIntentService extends IntentService {
+      \npublic HelloIntentService() {
+          \nsuper("HelloIntentService");
+      \n}
+      \n\n@Override
+      \nprotected void onHandleIntent(Intent intent) {
+          \ntry {
+              \nThread.sleep(5000);
+          \n} catch (InterruptedException e) {
+              \nThread.currentThread().interrupt();
+          \n}
+      \n}
+    \n}
+    </string>
+    <string name="activity_display3">
+        public class MyReceiver extends BroadcastReceiver {
+           \n\n@Override
+           \npublic void onReceive(Context context, Intent intent) {
+              \nToast.makeText(context, "Intent Detected.", Toast.LENGTH_LONG).show();
+           \n}
+        \n}
+    </string>
+    <string name="activity_display4">
+        String[] mProjection =
+        \n{
+            \nUserDictionary.Words._ID,
+            \nUserDictionary.Words.WORD,
+            \nUserDictionary.Words.LOCALE
+        \n};
+        \nString selectionClause = null;
+        \nString[] selectionArgs = {""};
+    </string>
+</resources>
